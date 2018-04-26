@@ -120,7 +120,7 @@
 		return *this;
 	}
 
-	CircularInt CircularInt::operator*=(int num){
+	/*CircularInt CircularInt::operator*=(int num){
 		this->now*=num;
 		
 		if(this->now > max)
@@ -128,7 +128,7 @@
 			this->now = this->now % max;
 		}
 		return *this;
-	}
+	}*/
 
 	vector<int> CircularInt::operator/(int num){
 
