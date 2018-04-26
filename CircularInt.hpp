@@ -70,6 +70,10 @@ class CircularInt{
 		friend CircularInt operator+(const int num,const CircularInt & h);
 		friend CircularInt operator+(const CircularInt & a,const CircularInt & b);
 
+		friend CircularInt operator+=(const CircularInt& h, const int num);
+		friend CircularInt operator+=(const int num, const CircularInt& h);
+		friend CircularInt operator+=(const CircularInt& a, const CircularInt& b);
+
 		friend CircularInt operator-(const CircularInt & h, const int num);
 		friend CircularInt operator-(const int num,const CircularInt & h);
 		friend CircularInt operator-(const CircularInt & a,const CircularInt & b);
@@ -241,4 +245,16 @@ inline CircularInt operator*=(const int num, const CircularInt& h){
 }
 inline CircularInt operator*=(const CircularInt& a, const CircularInt& b){
 	return a *= b.now;
+}
+
+inline CircularInt operator+=(const CircularInt& h, const int num){
+	CircularInt temp(h);
+	temp.now += num;
+	return temp;
+}
+inline CircularInt operator+=(const int num, const CircularInt& h){
+	return h += num;
+}
+inline CircularInt operator+=(const CircularInt& a, const CircularInt& b){
+	return a += b.now;
 }
