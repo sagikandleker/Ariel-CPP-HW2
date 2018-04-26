@@ -14,6 +14,7 @@ class CircularInt{
 	public:
 		CircularInt(int a, int b);
 		CircularInt(const CircularInt& h);
+		//CircularInt(const int);
 		
 		CircularInt& operator+=(const int);
 		CircularInt& operator-=(const int);
@@ -88,11 +89,18 @@ class CircularInt{
 		friend CircularInt operator-(const CircularInt & a,const CircularInt & b);
 
 		friend ostream& operator<<(ostream& os, const CircularInt &m);
-	
+		friend istream& operator>>(istream& os, CircularInt &m);
 };
 
 inline ostream& operator<<(ostream& os, const CircularInt &m) {
 	os << m.now;
+	return os;
+}
+
+inline istream& operator>>(istream& os,  CircularInt &m) {
+	int i;
+	os >> i;
+	m.now = i;
 	return os;
 }
 
