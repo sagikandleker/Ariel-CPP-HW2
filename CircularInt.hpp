@@ -38,6 +38,10 @@ class CircularInt{
 		friend int operator==(int num, const CircularInt& h);
 		friend int operator==(const CircularInt& a, const CircularInt& b);
 
+		friend int operator!=(const CircularInt& h, int num);
+		friend int operator!=(int num, const CircularInt& h);
+		friend int operator!=(const CircularInt& a, const CircularInt& b);
+
 		friend CircularInt operator-(const CircularInt& h);
 		friend CircularInt operator-(const CircularInt& h, const int num);
 		friend CircularInt operator-(const int num, const CircularInt& h);
@@ -86,6 +90,21 @@ inline int operator==(const CircularInt& a, const CircularInt& b){
 
 inline int operator==(const CircularInt& a, int num){
 	if(a.now == num) return 1;
+	else return 0;
+}
+
+inline int operator!=(int num, const CircularInt& h){
+	if(num != h.now) return 1;
+	else return 0;
+}
+
+inline int operator!=(const CircularInt& a, const CircularInt& b){
+	if(a.now != b.now) return 1;
+	else return 0;
+}
+
+inline int operator!=(const CircularInt& a, int num){
+	if(a.now != num) return 1;
 	else return 0;
 }
 
