@@ -4,8 +4,6 @@
 #include <string>
 #include "CircularInt.hpp"
 
-	
-
 	CircularInt::CircularInt(int a, int b)
 	{	
         if(a > b)
@@ -28,7 +26,7 @@
 		this->now = h.now;
     }
 
-	CircularInt CircularInt::operator+(const CircularInt& h)
+	/*CircularInt CircularInt::operator+(const CircularInt& h)
 	{
 		CircularInt hour{min,max};
 		hour.now = this->now + h.now;
@@ -47,27 +45,36 @@
 			hour.now=hour.now-max;
 		}
 		return hour;
+	}*/
+
+	CircularInt& CircularInt::operator-=(const int num){
+		this->now = this->now - num;
+		if(this->now < min)
+		{
+			this->now = this->now % max + max;
+		}
+		return *this;
 	}
 
-	CircularInt CircularInt::operator-(int num) {
+	/*CircularInt CircularInt::operator-(int num) {
 		CircularInt hour{min,max};
 		hour.now=num-now;
 		while(hour.now<min){
 			hour.now=hour.now+max;
 		}
 		return hour;
-	}
+	}*/
 
-	CircularInt CircularInt::operator-() {
+	/*CircularInt CircularInt::operator-() {
 		CircularInt hour{min,max};
 		hour.now=max-now;
 		while(hour.now<min){
 			hour.now=hour.now+max;
 		}
 		return hour;
-	}
+	}*/
 
-	CircularInt& CircularInt::operator+=(int num) {
+	CircularInt& CircularInt::operator+=(const int num) {
 		this->now = this->now+num;
 		if(this->now > max)
 		{
@@ -114,7 +121,6 @@
 		return *this;
 	}
 
-
 	vector<int> CircularInt::operator/(int num){
 
 		vector<int> vec;
@@ -139,7 +145,7 @@
 		return vec;
 	}
 
-CircularInt operator-(int num,const CircularInt & h) {
+/*CircularInt operator-(int num,const CircularInt & h) {
 	CircularInt temp{h.min,h.max};
 	temp.now=num-h.now;
 	
@@ -148,5 +154,5 @@ CircularInt operator-(int num,const CircularInt & h) {
 		temp.now = temp.now % temp.max + temp.max;
 	}
 	return temp;
-	}
+	}*/
 
