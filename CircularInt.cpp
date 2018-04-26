@@ -26,6 +26,13 @@
 		this->now = h.now;
     }
 
+	CircularInt& CircularInt::operator=(const int num){
+		return *this = num;	
+	}
+	CircularInt& CircularInt::operator=(CircularInt& h){
+		return *this = h.now;
+	}
+
 	/*CircularInt CircularInt::operator+(const CircularInt& h)
 	{
 		CircularInt hour{min,max};
@@ -54,7 +61,7 @@
 		}
 		return *this;
 	}
-	
+
 	CircularInt& CircularInt::operator-=(const int num){
 		this->now = this->now - num;
 		if(this->now < min)
