@@ -108,3 +108,15 @@ inline CircularInt operator+(const CircularInt & h, const int num){
 inline CircularInt operator+(const CircularInt & a,const CircularInt & b){
 	return a + b.now;
 }
+
+inline CircularInt operator*(const CircularInt& h, const int num){
+	CircularInt temp(h);
+	temp *= num;
+	return temp;
+}
+inline CircularInt operator*(const int num, const CircularInt& h){
+	return h * num;
+}
+inline CircularInt operator*(const CircularInt& a, const CircularInt& b){
+	return a * b.now;
+}
