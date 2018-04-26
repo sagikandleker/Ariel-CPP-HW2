@@ -14,26 +14,38 @@ class CircularInt{
 	public:
 		CircularInt(int a, int b);
 		CircularInt(const CircularInt& h);
-		CircularInt operator+(const CircularInt& h);
-		CircularInt operator+(int num);
-		CircularInt operator-(int num);
-		CircularInt operator-();
-		CircularInt& operator+=(int num);
+		
+		CircularInt& operator+=(const int num);
+		CircularInt& operator-=(const int num);
 		CircularInt operator--(int);
 		CircularInt& operator--();
 		CircularInt operator++(int);
 		CircularInt& operator++();
 		CircularInt operator*=(int num);
+
 		vector<int> operator/(int num);
 
-		friend CircularInt operator-(int num,const CircularInt & h);
-		
-		friend ostream& operator<< (ostream& os, const CircularInt &m);
+		friend int operator==(const CircularInt& h, int num);
+		friend int operator==(int num, const CircularInt& h);
+		friend int operator==(const CircularInt& a, const CircularInt& b);
+
+		friend CircularInt operator-(const CircularInt& h);
+		friend CircularInt operator-(const CircularInt& h, const int num);
+		friend CircularInt operator-(const int num, const CircularInt& h);
+		friend CircularInt operator-(const CircularInt& a, const CircularInt& b);
+
+		friend CircularInt operator*(const CircularInt& h, const int num);
+		friend CircularInt operator*(const int num, const CircularInt& h);
+		friend CircularInt operator*(const CircularInt& a, const CircularInt& b);
+
+		friend CircularInt operator+(const CircularInt& h);
+		friend CircularInt operator+(const CircularInt & h, const int num);
+		friend CircularInt operator+(const int num,const CircularInt & h);
+		friend CircularInt operator+(const CircularInt & a,const CircularInt & b);
+
+		friend ostream& operator<<(ostream& os, const CircularInt &m);
 	
 };
-
-
-//inline CircularInt operator-(int num,const CircularInt & h);
 
 inline ostream& operator<<(ostream& os, const CircularInt &m) {
 	os << m.now;
@@ -47,4 +59,52 @@ inline ostream &operator<<(ostream &os, vector<int> vec) {
 		result = result + to_string(vec[i]) + " ";
 	}
 	return os << result;
+}
+
+inline int operator==(int num, const CircularInt& h){
+	if(num == h.now) return 1;
+	else return 0;
+}
+
+inline int operator==(const CircularInt& a, const CircularInt& b){
+	if(a.now == b.now) return 1;
+	else return 0;
+}
+
+inline int operator==(const CircularInt& a, int num){
+	if(a.now == num) return 1;
+	else return 0;
+}
+
+inline CircularInt operator-(const CircularInt& h){
+	CircularInt temp(h);
+	temp.now = temp.max - temp.now;
+	return temp;
+}
+
+inline CircularInt operator-(const CircularInt& h, const int num){
+	CircularInt temp(h);
+	temp -= num;
+	return temp;
+}
+
+inline CircularInt operator-(const int num, const CircularInt& h){
+	return -(h - num);
+}
+inline CircularInt operator-(const CircularInt& a, const CircularInt& b){
+	return a - b.now;
+}
+
+inline CircularInt operator+(const int num, const CircularInt& h){
+	return h + num;
+}
+
+inline CircularInt operator+(const CircularInt & h, const int num){
+	CircularInt temp(h);
+	temp += num;
+	return temp;
+}
+
+inline CircularInt operator+(const CircularInt & a,const CircularInt & b){
+	return a + b.now;
 }
