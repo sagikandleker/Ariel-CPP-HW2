@@ -26,12 +26,6 @@
 		this->now = h.now;
     }
 
-	CircularInt& CircularInt::operator=(const int num){
-		return *this = num;	
-	}
-	CircularInt& CircularInt::operator=(CircularInt& h){
-		return *this = h.now;
-	}
 
 	/*CircularInt CircularInt::operator+(const CircularInt& h)
 	{
