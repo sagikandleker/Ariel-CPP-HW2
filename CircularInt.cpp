@@ -46,7 +46,15 @@
 		}
 		return hour;
 	}*/
-
+	CircularInt CircularInt::operator/=(const int num){
+		this->now = this->now / num;
+		if(this->now < min)
+		{
+			this->now = this->now % max + max;
+		}
+		return *this;
+	}
+	
 	CircularInt& CircularInt::operator-=(const int num){
 		this->now = this->now - num;
 		if(this->now < min)
