@@ -47,7 +47,7 @@
 		}
 		return hour;
 	}*/
-	CircularInt CircularInt::operator/=(const int num){
+	CircularInt& CircularInt::operator/=(const int num){
 		this->now = this->now / num;
 		if(this->now < min)
 		{
@@ -120,7 +120,18 @@
 		return *this;
 	}
 
-	/*CircularInt CircularInt::operator*=(int num){
+	CircularInt& CircularInt::operator=(const int num){
+		CircularInt temp(*this);
+		temp = num;
+		return temp;
+	}
+
+	CircularInt& CircularInt::operator=(const CircularInt& h){
+		CircularInt temp(h);
+		return temp;
+	}
+
+	CircularInt& CircularInt::operator*=(const int num){
 		this->now*=num;
 		
 		if(this->now > max)
@@ -128,7 +139,7 @@
 			this->now = this->now % max;
 		}
 		return *this;
-	}*/
+	}
 
 	vector<int> CircularInt::operator/(int num){
 
