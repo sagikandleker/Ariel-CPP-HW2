@@ -22,7 +22,7 @@ class CircularInt{
 		CircularInt& operator--();
 		CircularInt operator++(int);
 		CircularInt& operator++();
-		CircularInt operator*=(int num);
+		//CircularInt operator*=(int num);
 		
 		vector<int> operator/(int num);
 
