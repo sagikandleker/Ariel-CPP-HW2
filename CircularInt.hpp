@@ -15,14 +15,19 @@ class CircularInt{
 		CircularInt(int a, int b);
 		CircularInt(const CircularInt& h);
 		
-		CircularInt& operator+=(const int num);
-		CircularInt& operator-=(const int num);
-		CircularInt operator/=(const int);
+		CircularInt& operator+=(const int);
+		CircularInt& operator-=(const int);
+		CircularInt& operator*=(const int);
+		CircularInt& operator/=(const int);
+
 		CircularInt operator--(int);
 		CircularInt& operator--();
 		CircularInt operator++(int);
 		CircularInt& operator++();
-		//CircularInt operator*=(int num);
+		
+		CircularInt& operator=(const int);
+
+		CircularInt& operator=(const CircularInt& h);
 		
 		vector<int> operator/(int num);
 
@@ -56,6 +61,10 @@ class CircularInt{
 		friend CircularInt operator-(const CircularInt& h, const int num);
 		friend CircularInt operator-(const int num, const CircularInt& h);
 		friend CircularInt operator-(const CircularInt& a, const CircularInt& b);
+
+		friend CircularInt operator-=(const CircularInt& h, const int num);
+		friend CircularInt operator-=(const int num, const CircularInt& h);
+		friend CircularInt operator-=(const CircularInt& a, const CircularInt& b);
 
 		friend CircularInt operator*(const CircularInt& h, const int num);
 		friend CircularInt operator*(const int num, const CircularInt& h);
@@ -257,4 +266,17 @@ inline CircularInt operator+=(const int num, const CircularInt& h){
 }
 inline CircularInt operator+=(const CircularInt& a, const CircularInt& b){
 	return a += b.now;
+}
+
+
+inline CircularInt operator-=(const CircularInt& h, const int num){
+	CircularInt temp(h);
+	temp.now -= num;
+	return temp;
+}
+inline CircularInt operator-=(const int num, const CircularInt& h){
+	return h -= num;
+}
+inline CircularInt operator-=(const CircularInt& a, const CircularInt& b){
+	return a -= b.now;
 }
