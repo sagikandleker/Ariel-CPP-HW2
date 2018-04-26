@@ -26,10 +26,18 @@ class CircularInt{
 		
 		vector<int> operator/(int num);
 
+		friend int operator>=(const CircularInt& h, int num);
+		friend int operator>=(int num, const CircularInt& h);
+		friend int operator>=(const CircularInt& a, const CircularInt& b);
+
 		friend int operator>(const CircularInt& h, int num);
 		friend int operator>(int num, const CircularInt& h);
 		friend int operator>(const CircularInt& a, const CircularInt& b);
 
+		friend int operator<=(const CircularInt& h, int num);
+		friend int operator<=(int num, const CircularInt& h);
+		friend int operator<=(const CircularInt& a, const CircularInt& b);
+		
 		friend int operator<(const CircularInt& h, int num);
 		friend int operator<(int num, const CircularInt& h);
 		friend int operator<(const CircularInt& a, const CircularInt& b);
@@ -188,5 +196,31 @@ inline int operator<(int num, const CircularInt& h){
 }
 inline int operator<(const CircularInt& a, const CircularInt& b){
 	if(a.now < b.now) return 1;
+	else return 0;
+}
+
+inline int operator<=(const CircularInt& h, int num){
+	if(h.now <= num) return 1;
+	else return 0;
+}
+inline int operator<=(int num, const CircularInt& h){
+	if(num <= h.now) return 1;
+	else return 0;
+}
+inline int operator<=(const CircularInt& a, const CircularInt& b){
+	if(a.now <= b.now) return 1;
+	else return 0;
+}
+
+inline int operator>=(const CircularInt& h, int num){
+	if(h.now >= num) return 1;
+	else return 0;
+}
+inline int operator>=(int num, const CircularInt& h){
+	if(num >= h.now) return 1;
+	else return 0;
+}
+inline int operator>=(const CircularInt& a, const CircularInt& b){
+	if(a.now >= b.now) return 1;
 	else return 0;
 }
