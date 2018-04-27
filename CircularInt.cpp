@@ -1,242 +1,281 @@
+#pragma once
 #include <vector>
 #include <set>
 #include <iostream>
 #include <string>
-#include "CircularInt.hpp"
 
-CircularInt::CircularInt(int a, int b)
-{
-	if(a > b)
-	{
-		this->max = a;
-		this->min = b;
-	}
-	else
-	{
-		this->min = a;
-		this->max = b;
-	}
-	this->now = this->min;
+using namespace std;
+
+class CircularInt{
+private:
+	int min, max;
+	int now;
+
+public:
+	CircularInt(int a, int b);
+	CircularInt(const CircularInt& h);
+
+
+	CircularInt& operator+=(const int);
+	CircularInt& operator+=(const CircularInt& h);
+
+	CircularInt& operator-=(const int);
+	CircularInt& operator-=(const CircularInt& h);
+
+	CircularInt& operator*=(const int);
+	CircularInt& operator*=(const CircularInt& h);
+
+	CircularInt& operator/=(const int);
+	CircularInt& operator/=(const CircularInt& h);
+
+	CircularInt operator--(int);
+	CircularInt& operator--();
+
+	CircularInt operator++(int);
+	CircularInt& operator++();
+
+	CircularInt& operator=(const int);
+	CircularInt& operator=(const CircularInt& h);
+
+	//vector<int> operator/(const int num);
+	//vector<int> operator/(const CircularInt& h);
+
+
+	friend int operator>=(const CircularInt& h, int num);
+	friend int operator>=(int num, const CircularInt& h);
+	friend int operator>=(const CircularInt& a, const CircularInt& b);
+
+	friend int operator>(const CircularInt& h, int num);
+	friend int operator>(int num, const CircularInt& h);
+	friend int operator>(const CircularInt& a, const CircularInt& b);
+
+	friend int operator<=(const CircularInt& h, int num);
+	friend int operator<=(int num, const CircularInt& h);
+	friend int operator<=(const CircularInt& a, const CircularInt& b);
+
+	friend int operator<(const CircularInt& h, int num);
+	friend int operator<(int num, const CircularInt& h);
+	friend int operator<(const CircularInt& a, const CircularInt& b);
+
+	friend int operator==(const CircularInt& h, int num);
+	friend int operator==(int num, const CircularInt& h);
+	friend int operator==(const CircularInt& a, const CircularInt& b);
+
+	friend int operator!=(const CircularInt& h, int num);
+	friend int operator!=(int num, const CircularInt& h);
+	friend int operator!=(const CircularInt& a, const CircularInt& b);
+
+	friend CircularInt operator-(const CircularInt& h);
+	friend CircularInt operator-(const CircularInt& h, const int num);
+	friend CircularInt operator-(const int num, const CircularInt& h);
+	friend CircularInt operator-(const CircularInt& a, const CircularInt& b);
+
+	friend CircularInt operator-=(const CircularInt& h, const int num);
+	friend CircularInt operator-=(const int num, const CircularInt& h);
+	friend CircularInt operator-=(const CircularInt& a, const CircularInt& b);
+
+	friend CircularInt operator*(const CircularInt& h, const int num);
+	friend CircularInt operator*(const int num, const CircularInt& h);
+	friend CircularInt operator*(const CircularInt& a, const CircularInt& b);
+
+	friend CircularInt operator+(const CircularInt& h);
+	friend CircularInt operator+(const CircularInt & h, const int num);
+	friend CircularInt operator+(const int num,const CircularInt & h);
+	friend CircularInt operator+(const CircularInt & a,const CircularInt & b);
+
+	friend CircularInt operator-(const CircularInt & h, const int num);
+	friend CircularInt operator-(const int num,const CircularInt & h);
+	friend CircularInt operator-(const CircularInt & a,const CircularInt & b);
+
+	friend CircularInt operator/(const CircularInt & h, const int num);
+	friend CircularInt operator/(const int num,const CircularInt & h);
+	friend CircularInt operator/(const CircularInt & a,const CircularInt & b);
+
+	friend ostream& operator<<(ostream& os, const CircularInt &m);
+	friend istream& operator>>(istream& os, CircularInt &m);
+};
+
+inline ostream& operator<<(ostream& os, const CircularInt &m) {
+	os << m.now;
+	return os;
 }
 
-CircularInt::CircularInt(const CircularInt& h)
-{
-	this->min = h.min;
-	this->max = h.max;
-	this->now = h.now;
-}
-
-
-CircularInt& CircularInt::operator/=(const int num){
-	for(int i = min; i < max; i++)
-	{
-		int temp = i*num;
-		while(temp>min){
-			temp-=max;
-		}
-
-		while(temp<min){
-			temp+=max;
-		}
-
-		if(temp == now)
-		{
-			this->now = i;
-			return *this;
-		}
+inline istream& operator>>(istream& os,  CircularInt &m) {
+	int n;
+	os >> n;
+	m.now = n;
+	if(m.now>m.max){
+		m.now=m.now%m.max;
 	}
-
-	throw string("There is no number x in {"+to_string(min)+ ","+ to_string(max)+"} such that x*" + to_string(num)+"="+to_string(now));
-}
-
-CircularInt& CircularInt::operator/=(const CircularInt& h){
-	for(int i = min; i < max; i++)
-	{
-		int temp = i*h.now;
-		while(temp>min){
-			temp-=max;
-		}
-
-		while(temp<min){
-			temp+=max;
-		}
-
-		if(temp == now)
-		{
-			this->now = i;
-			return *this;
-		}
+	while(m.now<m.min){
+		m.now+=m.max;
 	}
-
-	throw string("There is no number x in {"+to_string(min)+ ","+ to_string(max)+"} such that x*" + to_string(h.now)+"="+to_string(now));
-	
+	return os;
 }
 
-CircularInt& CircularInt::operator-=(const int num){
-	this->now = this->now - num;
-	if(this->now < min)
+inline ostream &operator<<(ostream &os, vector<int> vec) {
+	string result = "";
+	for(unsigned int i = 0; i < vec.size(); i++ )
 	{
-		this->now = this->now % max + max;
+		result = result + to_string(vec[i]) + " ";
 	}
-	return *this;
+	return os << result;
 }
 
-CircularInt& CircularInt::operator-=(const CircularInt& h){
-	this->now = this->now - h.now;
-	if(this->now < min)
-	{
-		this->now = this->now % max + max;
-	}
-	return *this;
+inline int operator==(int num, const CircularInt& h){
+	if(num == h.now) return 1;
+	else return 0;
 }
 
-CircularInt& CircularInt::operator+=(const int num) {
-	this->now = this->now+num;
-	if(this->now > max)
-	{
-		this->now = this->now % max;
-	}
-	return *this;
+inline int operator==(const CircularInt& a, const CircularInt& b){
+	if(a.now == b.now) return 1;
+	else return 0;
 }
-CircularInt& CircularInt::operator+=(const CircularInt& h) {
-	this->now = this->now+h.now;
-	if(this->now > max)
-	{
-		this->now = this->now % max;
-	}
-	return *this;
+
+inline int operator==(const CircularInt& a, int num){
+	if(a.now == num) return 1;
+	else return 0;
 }
-CircularInt CircularInt::operator--(int){
-	CircularInt temp(*this);
-	operator--();
+
+inline int operator!=(int num, const CircularInt& h){
+	if(num != h.now) return 1;
+	else return 0;
+}
+
+inline int operator!=(const CircularInt& a, const CircularInt& b){
+	if(a.now != b.now) return 1;
+	else return 0;
+}
+
+inline int operator!=(const CircularInt& a, int num){
+	if(a.now != num) return 1;
+	else return 0;
+}
+
+inline CircularInt operator-(const CircularInt& h){
+	CircularInt temp(h);
+	temp.now = temp.max - temp.now;
 	return temp;
 }
-CircularInt& CircularInt::operator--(){
-	now--;
-	while(now<min){
-		now=now+max;
-	}
-	return *this;
-}
 
-CircularInt CircularInt::operator++(int){
-	CircularInt temp(*this);
-	operator++();
+inline CircularInt operator-(const CircularInt& h, const int num){
+	CircularInt temp(h);
+	temp -= num;
 	return temp;
 }
 
-CircularInt& CircularInt::operator++(){
-	now++;
-	if(now > max)
-	{
-		now =now % max;
-	}
-	return *this;
+inline CircularInt operator-(const int num, const CircularInt& h){
+	return -(h - num);
+}
+inline CircularInt operator-(const CircularInt& a, const CircularInt& b){
+	return a - b.now;
 }
 
-CircularInt& CircularInt::operator=(const int num){
-
-	now = num;
-	if(now > max)
-	{
-		now =now % max;
-	}
-	while(now<min){
-		now+=max;
-	}
-	return *this;
+inline CircularInt operator+(const int num, const CircularInt& h){
+	return h + num;
 }
 
-CircularInt& CircularInt::operator=(const CircularInt& h){
-	now = h.now;
-	if(now > max)
-	{
-		now =now % max;
-	}
-	while(now<min){
-		now+=max;
-	}
-	return *this;
+inline CircularInt operator+(const CircularInt & h, const int num){
+	CircularInt temp(h);
+	temp += num;
+	return temp;
+}
+
+inline CircularInt operator+(const CircularInt & a,const CircularInt & b){
+	return a + b.now;
+}
+
+inline CircularInt operator*(const CircularInt& h, const int num){
+	CircularInt temp(h);
+	temp *= num;
+	return temp;
+}
+inline CircularInt operator*(const int num, const CircularInt& h){
+	return operator*(h , num);
+}
+inline CircularInt operator*(const CircularInt& a, const CircularInt& b){
+	return operator*(a , b.now);
+}
+
+inline CircularInt operator/(const CircularInt & h, const int num){
+	CircularInt temp(h);
+	temp /= num;
+	return temp;
+}
+
+inline CircularInt operator/(const int num,const CircularInt & h){
+	CircularInt temp(h);
+	temp /= num;
+	return temp;
 
 }
 
-CircularInt& CircularInt::operator*=(const int num){
-	now*=num;
-
-	while(now > max)
-	{
-		now-=max;
-	}
-	while(now < min)
-	{
-		now+=max;
-	}
-
-	return *this;
-}
-CircularInt& CircularInt::operator*=(const CircularInt& h){
-	now*=h.now;
-
-	while(now > max)
-	{
-		now-=max;
-	}
-	while(now < min)
-	{
-		now+=max;
-	}
-
-	return *this;
-}
-/*vector<int> CircularInt::operator/(const int num){
-
-
-	vector<int> vec;
-	for(int i = min; i <= max; i++)
-	{
-		int temp = i*num;
-		while(temp>min){
-			temp-=max;
-		}
-
-		while(temp<min){
-			temp+=max;
-		}
-
-		if(temp == now)
-		{
-			vec.push_back(i);
-		}
-	}
-	if(vec.size() == 0)
-	{
-		throw string("There is no number x in {"+to_string(min)+ ","+ to_string(max)+"} such that x*" + to_string(num)+"="+to_string(now));
-	}
-	return vec;
+inline CircularInt operator/(const CircularInt & a,const CircularInt & b){
+	CircularInt temp(a);
+	temp.now /= b.now;
+	return temp;
 }
 
-vector<int> CircularInt::operator/(const CircularInt& h){
+inline int operator>(const CircularInt& h, int num){
+	if(h.now > num) return 1;
+	else return 0;
+}
+inline int operator>(int num, const CircularInt& h){
+	if(num > h.now) return 1;
+	else return 0;
+}
+inline int operator>(const CircularInt& a, const CircularInt& b){
+	if(a.now > b.now) return 1;
+	else return 0;
+}
 
-	vector<int> vec;
-	for(int i = min; i <= max; i++)
-	{
-		int temp = i*h.now;
-		while(temp>min){
-			temp-=max;
-		}
+inline int operator<(const CircularInt& h, int num){
+	if(h.now < num) return 1;
+	else return 0;
+}
+inline int operator<(int num, const CircularInt& h){
+	if(num < h.now) return 1;
+	else return 0;
+}
+inline int operator<(const CircularInt& a, const CircularInt& b){
+	if(a.now < b.now) return 1;
+	else return 0;
+}
 
-		while(temp<min){
-			temp+=max;
-		}
+inline int operator<=(const CircularInt& h, int num){
+	if(h.now <= num) return 1;
+	else return 0;
+}
+inline int operator<=(int num, const CircularInt& h){
+	if(num <= h.now) return 1;
+	else return 0;
+}
+inline int operator<=(const CircularInt& a, const CircularInt& b){
+	if(a.now <= b.now) return 1;
+	else return 0;
+}
 
-		if(temp == now)
-		{
-			vec.push_back(i);
-		}
-	}
-	if(vec.size() == 0)
-	{
-		throw string("There is no number x in {"+to_string(min)+ ","+ to_string(max)+"} such that x*" + to_string(h.now)+"="+to_string(now));
-	}
-	return vec;
-}*/
+inline int operator>=(const CircularInt& h, int num){
+	if(h.now >= num) return 1;
+	else return 0;
+}
+inline int operator>=(int num, const CircularInt& h){
+	if(num >= h.now) return 1;
+	else return 0;
+}
+inline int operator>=(const CircularInt& a, const CircularInt& b){
+	if(a.now >= b.now) return 1;
+	else return 0;
+}
+
+inline CircularInt operator-=(const CircularInt& h, const int num){
+	CircularInt temp(h);
+	temp.now -= num;
+	return temp;
+}
+inline CircularInt operator-=(const int num, const CircularInt& h){
+	return h -= num;
+}
+inline CircularInt operator-=(const CircularInt& a, const CircularInt& b){
+	return a -= b.now;
+}
