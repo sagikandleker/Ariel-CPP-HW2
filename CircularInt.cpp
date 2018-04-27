@@ -41,6 +41,7 @@ CircularInt& CircularInt::operator/=(const int num){
 
 		if(temp == now)
 		{
+			this->now = now;
 			return *this;
 		}
 	}
@@ -60,6 +61,7 @@ CircularInt& CircularInt::operator/=(const CircularInt& h){
 
 		if(temp == now)
 		{
+			this->now = now;
 			return *this;
 		}
 	}
