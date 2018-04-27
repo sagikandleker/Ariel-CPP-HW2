@@ -238,7 +238,7 @@ inline CircularInt operator/=(const int num, const CircularInt & h){
 		}
 	}
 
-	throw string("There is no number x in {"+to_string(Object.min)+ ","+ to_string(Object.max)+"} such that x*" + to_string(Object.now)+"="+to_string(num));
+	throw string("There is no number x in {"+to_string(Object.min)+ ","+ to_string(Object.max)+"} such that x*" + to_string(num)+"="+to_string(Object.now));
 }
 
 inline int operator>(const CircularInt& h, int num){
