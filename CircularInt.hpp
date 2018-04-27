@@ -91,6 +91,8 @@ public:
 	friend CircularInt operator/(const int num,const CircularInt & h);
 	friend CircularInt operator/(const CircularInt & a,const CircularInt & b);
 
+	friend CircularInt operator/=(const int num, const CircularInt & h);
+
 	friend ostream& operator<<(ostream& os, const CircularInt &m);
 	friend istream& operator>>(istream& os, CircularInt &m);
 };
@@ -204,16 +206,39 @@ inline CircularInt operator/(const CircularInt & h, const int num){
 }
 
 inline CircularInt operator/(const int num,const CircularInt & h){
-	
 	CircularInt temp(h);
-	temp /= num;
+	num /= temp;
 	return temp;
 
 }
+
 inline CircularInt operator/(const CircularInt & a,const CircularInt & b){
 	CircularInt temp(a);
-	temp /= b.now;
+	temp.now /= b.now;
 	return temp;
+}
+
+inline CircularInt operator/=(const int num, const CircularInt & h){
+	CircularInt temp1(h);
+	for(int i = h.min; i < h.max; i++)
+	{
+		int temp = i*h.now;
+		while(temp>h.max){
+			temp-=h.max;
+		}
+
+		while(temp<h.min){
+			temp+=h.max;
+		}
+
+		if(temp == num)
+		{
+			temp1.now = i;
+			return temp1;
+		}
+	}
+
+	throw string("There is no number x in {"+to_string(h.min)+ ","+ to_string(h.max)+"} such that x*" + to_string(num)+"="+to_string(h.now));
 }
 
 inline int operator>(const CircularInt& h, int num){
