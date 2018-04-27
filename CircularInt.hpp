@@ -211,7 +211,9 @@ inline CircularInt operator/(const int num,const CircularInt & h){
 
 }
 inline CircularInt operator/(const CircularInt & a,const CircularInt & b){
-	return a / b.now;
+	CircularInt temp(a);
+	temp /= b.now;
+	return temp;
 }
 
 inline int operator>(const CircularInt& h, int num){
