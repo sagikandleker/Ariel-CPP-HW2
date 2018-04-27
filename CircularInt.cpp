@@ -28,7 +28,7 @@ CircularInt::CircularInt(const CircularInt& h)
 
 
 CircularInt& CircularInt::operator/=(const int num){
-	for(int i = min; i <= max; i++)
+	for(int i = min; i < max; i++)
 	{
 		int temp = i*num;
 		while(temp>min){
@@ -50,7 +50,7 @@ CircularInt& CircularInt::operator/=(const int num){
 }
 
 CircularInt& CircularInt::operator/=(const CircularInt& h){
-	for(int i = min; i <= max; i++)
+	for(int i = min; i < max; i++)
 	{
 		int temp = i*h.now;
 		while(temp>min){
@@ -68,7 +68,6 @@ CircularInt& CircularInt::operator/=(const CircularInt& h){
 		}
 	}
 
-	
 	throw string("There is no number x in {"+to_string(min)+ ","+ to_string(max)+"} such that x*" + to_string(h.now)+"="+to_string(now));
 	
 }
