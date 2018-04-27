@@ -219,26 +219,26 @@ inline CircularInt operator/(const CircularInt & a,const CircularInt & b){
 }
 
 inline CircularInt operator/=(const int num, const CircularInt & h){
-	CircularInt temp1(h);
-	for(int i = h.min; i < h.max; i++)
+	CircularInt Object(h);
+	for(int i = Object.min; i < Object.max; i++)
 	{
-		int temp = i*h.now;
-		while(temp>h.max){
-			temp-=h.max;
+		int temp = i*Object.now;
+		while(temp>Object.max){
+			temp-=Object.max;
 		}
 
-		while(temp<h.min){
-			temp+=h.max;
+		while(temp<Object.min){
+			temp+=Object.max;
 		}
 
 		if(temp == num)
 		{
-			temp1.now = i;
-			return temp1;
+			Object.now = i;
+			return Object;
 		}
 	}
 
-	throw string("There is no number x in {"+to_string(h.min)+ ","+ to_string(h.max)+"} such that x*" + to_string(num)+"="+to_string(h.now));
+	throw string("There is no number x in {"+to_string(Object.min)+ ","+ to_string(Object.max)+"} such that x*" + to_string(Object.now)+"="+to_string(num));
 }
 
 inline int operator>(const CircularInt& h, int num){
