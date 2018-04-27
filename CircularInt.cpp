@@ -30,7 +30,7 @@ CircularInt::CircularInt(const CircularInt& h)
 CircularInt& CircularInt::operator/=(const int num){
 	for(int i = min; i <= max; i++)
 	{
-		int temp = i*now;
+		int temp = i*num;
 		while(temp>min){
 			temp-=max;
 		}
