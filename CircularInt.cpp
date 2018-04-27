@@ -45,6 +45,8 @@ CircularInt& CircularInt::operator/=(const int num){
 			return *this;
 		}
 	}
+
+	throw string("There is no number x in {"+to_string(min)+ ","+ to_string(max)+"} such that x*" + to_string(num)+"="+to_string(now));
 }
 
 CircularInt& CircularInt::operator/=(const CircularInt& h){
@@ -65,6 +67,10 @@ CircularInt& CircularInt::operator/=(const CircularInt& h){
 			return *this;
 		}
 	}
+
+	
+	throw string("There is no number x in {"+to_string(min)+ ","+ to_string(max)+"} such that x*" + to_string(h.now)+"="+to_string(now));
+	
 }
 
 CircularInt& CircularInt::operator-=(const int num){
