@@ -115,7 +115,8 @@ CircularInt& CircularInt::operator=(const CircularInt& h){
 }
 
 CircularInt& CircularInt::operator*=(const int num){
-	now*=num;
+
+	this->now *= num;
 
 	while(now > max)
 	{
@@ -129,7 +130,7 @@ CircularInt& CircularInt::operator*=(const int num){
 	return *this;
 }
 CircularInt& CircularInt::operator*=(const CircularInt& h){
-	now*=h.now;
+	this->now *= h.now;
 
 	while(now > max)
 	{
