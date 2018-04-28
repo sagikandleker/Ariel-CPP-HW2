@@ -199,7 +199,7 @@ inline CircularInt operator*(const CircularInt& a, const CircularInt& b){
 
 inline CircularInt operator/(const CircularInt & h, const int num){
 	CircularInt temp(h);
-	temp /= num;
+	temp / num;
 	return temp;
 }
 
