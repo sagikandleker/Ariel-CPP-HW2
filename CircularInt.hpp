@@ -205,7 +205,7 @@ inline CircularInt operator/(const CircularInt & h, const int num){
 
 inline CircularInt operator/(const int num,const CircularInt & h){
 	CircularInt temp(h);
-	temp /= num;
+	temp / num;
 	return temp;
 
 }
