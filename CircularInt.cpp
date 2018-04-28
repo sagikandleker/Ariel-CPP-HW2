@@ -26,52 +26,6 @@ CircularInt::CircularInt(const CircularInt& h)
 	this->now = h.now;
 }
 
-
-/*CircularInt& CircularInt::operator/=(const int num){
-	for(int i = min; i < max; i++)
-	{
-		int temp = i*num;
-		while(temp>max){
-			temp-=max;
-		}
-
-		while(temp<min){
-			temp+=max;
-		}
-
-		if(temp == now)
-		{
-			this->now = i;
-			return *this;
-		}
-	}
-
-	throw string("There is no number x in {"+to_string(min)+ ","+ to_string(max)+"} such that x*" + to_string(num)+"="+to_string(now));
-}*/
-
-/*CircularInt& CircularInt::operator/=(const CircularInt& h){
-	for(int i = min; i < max; i++)
-	{
-		int temp = i*h.now;
-		while(temp>max){
-			temp-=max;
-		}
-
-		while(temp<min){
-			temp+=max;
-		}
-
-		if(temp == now)
-		{
-			this->now = i;
-			return *this;
-		}
-	}
-
-	throw string("There is no number x in {"+to_string(min)+ ","+ to_string(max)+"} such that x*" + to_string(h.now)+"="+to_string(now));
-	
-}*/
-
 CircularInt& CircularInt::operator-=(const int num){
 	this->now = this->now - num;
 	if(this->now < min)
@@ -106,7 +60,7 @@ CircularInt& CircularInt::operator+=(const CircularInt& h) {
 	}
 	return *this;
 }
-CircularInt CircularInt::operator--(int){
+CircularInt CircularInt::operator--(const int){
 	CircularInt temp(*this);
 	operator--();
 	return temp;
@@ -188,55 +142,3 @@ CircularInt& CircularInt::operator*=(const CircularInt& h){
 
 	return *this;
 }
-/*vector<int> CircularInt::operator/(const int num){
-
-
-	vector<int> vec;
-	for(int i = min; i <= max; i++)
-	{
-		int temp = i*num;
-		while(temp>min){
-			temp-=max;
-		}
-
-		while(temp<min){
-			temp+=max;
-		}
-
-		if(temp == now)
-		{
-			vec.push_back(i);
-		}
-	}
-	if(vec.size() == 0)
-	{
-		throw string("There is no number x in {"+to_string(min)+ ","+ to_string(max)+"} such that x*" + to_string(num)+"="+to_string(now));
-	}
-	return vec;
-}
-
-vector<int> CircularInt::operator/(const CircularInt& h){
-
-	vector<int> vec;
-	for(int i = min; i <= max; i++)
-	{
-		int temp = i*h.now;
-		while(temp>min){
-			temp-=max;
-		}
-
-		while(temp<min){
-			temp+=max;
-		}
-
-		if(temp == now)
-		{
-			vec.push_back(i);
-		}
-	}
-	if(vec.size() == 0)
-	{
-		throw string("There is no number x in {"+to_string(min)+ ","+ to_string(max)+"} such that x*" + to_string(h.now)+"="+to_string(now));
-	}
-	return vec;
-}*/
