@@ -142,3 +142,49 @@ CircularInt& CircularInt::operator*=(const CircularInt& h){
 
 	return *this;
 }
+
+CircularInt& CircularInt::operator/=(const int num){
+	
+	for(int i = this->min; i < this->max; i++)
+	{
+		int temp = i*num;
+		while(temp>this->max){
+			temp-=this->max;
+		}
+
+		while(temp<this->min){
+			temp+=this->max;
+		}
+
+		if(temp == this->now)
+		{
+			this->now = i;
+			return *this;
+		}
+	}
+
+	throw string("There is no number x in {"+to_string(this->min)+ ","+ to_string(this->max)+"} such that x*" + to_string(num)+"="+to_string(this->now));
+}
+
+CircularInt& CircularInt::operator/=(const CircularInt& h){
+	CircularInt Object(h);
+	for(int i = this->min; i < this->max; i++)
+	{
+		int temp = i *Object.now;
+		while(temp>this->max){
+			temp-=this->max;
+		}
+
+		while(temp<this->min){
+			temp+=this->max;
+		}
+
+		if(temp == Object.now)
+		{
+			this->now = i;
+			return *this;
+		}
+	}
+
+	throw string("There is no number x in {"+to_string(this->min)+ ","+ to_string(this->max)+"} such that x*" + to_string(Object.now)+"="+to_string(this->now));
+}
