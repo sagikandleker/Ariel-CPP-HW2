@@ -191,9 +191,7 @@ inline CircularInt operator*(const CircularInt& h, const int num){
 	return temp;
 }
 inline CircularInt operator*(const int num, const CircularInt& h){
-	CircularInt temp(h);
-	temp *= num;
-	return temp;
+	return h * num;
 }
 inline CircularInt operator*(const CircularInt& a, const CircularInt& b){
 	return a * b.now;
